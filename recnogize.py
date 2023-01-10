@@ -21,16 +21,16 @@ def get_access_token():
     access_token = res['access_token']
     return access_token
 
-access_token = get_access_token() # 
+access_token = get_access_token() # 获取access tocken的时候需要保证没有vpn在运行
 
 #通用文字识别
-def general_word():
+def general_word(r_path,w_path):
     #通用文字识别接口url
     general_word_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
     #获取执行路径
     # path = os.getcwd()
     # 二进制方式打开图片文件
-    f = open('5.jpg', 'rb')
+    f = open(r_path, 'rb')
     img = base64.b64encode(f.read())
     print(img)
     params = {"image":img,
@@ -45,7 +45,7 @@ def general_word():
     if response:
         res = response.json()["words_result"]
         print(res)
-        file_name = "菜鸟小白.txt"
+        file_name = w_path
         with open(file_name, 'w', encoding='utf-8') as f:
             for j in res:
                 print(j["words"])
@@ -53,5 +53,6 @@ def general_word():
 
 
 if __name__ == '__main__':
-#    idcard()
+    r_path = 
+    w_path = 
     general_word()
