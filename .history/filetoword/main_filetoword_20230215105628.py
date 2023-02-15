@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+SyntaxError: invalid syntax
+
 import time
 from threading import Thread
 
