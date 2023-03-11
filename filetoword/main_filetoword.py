@@ -11,7 +11,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, Q
 import time
 import os.path
 # from Signal import my_signal
-
+import requests
+import base64
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -111,11 +112,15 @@ class MainWindow(QMainWindow):
                 # progress = index * 100 // (nn-1)
                 # self.set_progress_bar(progress)
                 expand_names= filename.split(".")[-1]
+                file_names= ".".join(filename.split(".")[0:-1])+".txt"
+                print(file_names)
                 if expand_names == "jpg" or expand_names == "png" or expand_names == "JPG" or expand_names == "jpeg":
                     srcFile = os.path.join(path, filename)
-                    dstFile = os.path.join(pathout, time_str + "." + timename)
-                self.ui.output_files.append("dealing "+ filename+ " "+"to"+" "+ time_str + "." + timename)
-                self.general_word()
+                    dstFile = os.path.join(pathout, file_names)
+                    self.ui.output_files.append("dealing "+ filename+ " "+"to"+" "+ file_names)
+                    self.general_word(srcFile,dstFile)
+                else:
+                    self.ui.output_files.append("dealing " + filename + "not change")
 
 if __name__ == '__main__':
     app = QApplication([])  # 启动一个应用
